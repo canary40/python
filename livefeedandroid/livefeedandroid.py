@@ -1,12 +1,11 @@
-  GNU nano 8.3                              ansa_notifiche2.py
 import feedparser
 import time
 import subprocess
 import os
 
 FEEDS_FILE = "feeds.txt"
-CHECK_INTERVAL = 10  # ogni 10 secondi
-last_notified_ids = {}  # dizionario {url_feed: ultimo_id}
+CHECK_INTERVAL = 10  #
+last_notified_ids = {}  #
 
 
 def load_feeds(file_path):
@@ -39,7 +38,7 @@ if __name__ == "__main__":
     if not FEED_URLS:
         exit(1)
 
-    # Avvio iniziale: mostra l'ultima notizia per ogni feed
+    #
     for url in FEED_URLS:
         feed = get_feed(url)
         feed_title = feed.feed.get("title", url)
@@ -50,7 +49,7 @@ if __name__ == "__main__":
             notify(feed_title, last_entry.title)
             print(f"[{last_entry.title}] Ultimo articolo: {feed_title}")
 
-    # Loop di monitoraggio
+    #
     while True:
         try:
             for url in FEED_URLS:
@@ -63,10 +62,10 @@ if __name__ == "__main__":
                         last_notified_ids[url] = latest_entry.id
                         notify(feed_title, latest_entry.title)
 
-                        # Stampa la nuova notizia
+                        #
                         print(f"\n[{feed_title}] Nuovo articolo: {latest_entry.title}")
 
-                        # Mostra anche gli ultimi 5 articoli (live feed)
+                        #
                         print("\n--- Ultime notizie ---")
                         for entry in feed.entries[:5]:
                             print(f"- {entry.title}")
@@ -75,3 +74,4 @@ if __name__ == "__main__":
             print(f"Errore: {e}")
 
         time.sleep(CHECK_INTERVAL)
+
