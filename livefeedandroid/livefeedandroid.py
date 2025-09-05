@@ -32,7 +32,7 @@ def get_feed(url):
 
 
 if __name__ == "__main__":
-    print("Avvio Notifier ANSA su Termux...")
+    print("Avvio live feed notifier...")
 
     FEED_URLS = load_feeds(FEEDS_FILE)
     if not FEED_URLS:
@@ -74,4 +74,5 @@ if __name__ == "__main__":
             print(f"Errore: {e}")
 
         time.sleep(CHECK_INTERVAL)
+
 
