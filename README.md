@@ -1,3 +1,4 @@
 - wifipassword: see your saved wifi password with one click
 - livefeed5: see your feed notifications on your Windows pc instantly!
 - livefeedandroid: see your feed notifications on your Android phone instantly!
+- advancedsearch: a nice and customizable search interface 
