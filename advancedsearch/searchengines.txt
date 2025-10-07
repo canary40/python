@@ -1,0 +1,8 @@
+{
+    "YouTube": "https://www.youtube.com/results?search_query=",
+    "Google": "https://www.google.com/search?q=",
+    "Amazon": "https://www.amazon.it/s?k=",
+    "Trovaprezzi": "https://www.trovaprezzi.it/categoria.aspx?id=-1&libera=",
+    "Mondadori Store": "https://www.mondadoristore.it/search?query=",
+    "eBay": "https://www.ebay.it/sch/i.html?_nkw="
+}
