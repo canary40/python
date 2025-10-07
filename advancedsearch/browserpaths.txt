@@ -1,0 +1,16 @@
+{
+    "Chrome": [
+        "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+        "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe"
+    ],
+    "Firefox": [
+        "C:\\Program Files\\Mozilla Firefox\\firefox.exe",
+        "C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe"
+    ],
+    "OperaGX": [
+        "C:\\Users\\USERNAME\\AppData\\Local\\Programs\\Opera GX\\opera.exe"
+    ],
+    "Vivaldi": [
+        "C:\\Users\\USERNAME\\AppData\\Local\\Vivaldi\\Application\\vivaldi.exe"
+    ]
+}
