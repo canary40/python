@@ -1,1 +1,1 @@
-pyinstaller --onefile --add-data "favicon.png;." --icon=favicon.ico index.pyw
+pyinstaller --onefile --add-data "favicon.png;." --add-data "favicon.ico;." --icon=favicon.ico index.pyw
