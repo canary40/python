@@ -7,6 +7,7 @@ from pystray import Icon, MenuItem as item, Menu
 from PIL import Image
 import sys
 import ctypes
+import json
 
 def disable_maximize_button(window):
     if sys.platform == "win32":
@@ -20,30 +21,26 @@ def disable_maximize_button(window):
 def register_custom_browsers():
     user_profile = os.environ.get("USERPROFILE", "")  # ottiene C:\Users\<username>
 
-    browsers_paths = {
-        "Chrome": [
-            r"C:\Program Files\Google\Chrome\Application\chrome.exe",
-            r"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"
-        ],
-        "Firefox": [
-            r"C:\Program Files\Mozilla Firefox\firefox.exe",
-            r"C:\Program Files (x86)\Mozilla Firefox\firefox.exe"
-        ],
-        "OperaGX": [
-            os.path.join(user_profile, r"AppData\Local\Programs\Opera GX\opera.exe")
-        ],
-        "Vivaldi": [
-            os.path.join(user_profile, r"AppData\Local\Vivaldi\Application\vivaldi.exe")
-        ]
-    }
-
+    def load_browser_paths(filename="browserpaths.txt"):
+        with open(filename, 'r') as file:
+            browser_paths = json.load(file)
+    
+        user_profile = os.getenv("USERPROFILE")  # Ottieni la cartella dell'utente
+    
+        for browser, paths in browser_paths.items():
+            for i, path in enumerate(paths):
+                browser_paths[browser][i] = path.replace("USERNAME", user_profile.split(os.sep)[-1])
+    
+        return browser_paths
+    
+    browsers_paths = load_browser_paths()
+    
     for name, paths in browsers_paths.items():
         for path in paths:
             if os.path.exists(path):
                 webbrowser.register(name, None, webbrowser.BackgroundBrowser(path))
-                break  # usa il primo percorso valido trovato
+                break
 
-# Chiamala all'avvio (prima di usarli)
 register_custom_browsers()
 
 def risorsa_percorso(rel_path):
@@ -51,14 +48,12 @@ def risorsa_percorso(rel_path):
         return os.path.join(sys._MEIPASS, rel_path)
     return os.path.join(os.path.abspath("."), rel_path)
 
-search_engines = {
-    "YouTube": "https://www.youtube.com/results?search_query=",
-    "Google": "https://www.google.com/search?q=",
-    "Amazon": "https://www.amazon.it/s?k=",
-    "Trovaprezzi": "https://www.trovaprezzi.it/categoria.aspx?id=-1&libera=",
-    "Mondadori Store": "https://www.mondadoristore.it/search?query=",
-    "eBay": "https://www.ebay.it/sch/i.html?_nkw=",
-}
+def load_search_engines(filename="searchengines.txt"):
+    with open(filename, 'r') as file:
+        search_engines = json.load(file)
+    return search_engines
+
+search_engines = load_search_engines()
 
 selected_engine_var = None
 selected_browser_var = None
