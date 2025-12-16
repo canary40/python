@@ -102,7 +102,7 @@ def create_gui():
     root.title("advanced search")
     root.configure(bg="black")
     
-    width, height = 500, 300
+    width, height = 800, 300
     root.geometry(f"{width}x{height}")
     root.resizable(False, True)
     root.after(0, lambda: disable_maximize_button(root))
